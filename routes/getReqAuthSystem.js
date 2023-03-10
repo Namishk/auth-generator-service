@@ -9,7 +9,7 @@ AuthSysRoute.get("/getAuthSystem", (req, res, next) => {
 
     if (systemType === "JWT") {
       const zip = new admZip();
-      zip.addLocalFolder("authSystems/jwt-auth");
+      zip.addLocalFolder("../authSystems/jwt-auth");
 
       var zipContents = zip.toBuffer();
       const fileName = "jwt-auth.zip";
