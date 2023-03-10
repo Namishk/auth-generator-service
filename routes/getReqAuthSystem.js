@@ -4,12 +4,13 @@ const admZip = require("adm-zip");
 var AuthSysRoute = express.Router();
 
 AuthSysRoute.get("/getAuthSystem", (req, res, next) => {
+  console.log("__dirname: ", __dirname + "/../authSystems/jwt-auth");
   try {
     const { systemType } = req.body;
 
     if (systemType === "JWT") {
       const zip = new admZip();
-      zip.addLocalFolder("../authSystems/jwt-auth");
+      zip.addLocalFolder(__dirname + "/../authSystems/jwt-auth");
 
       var zipContents = zip.toBuffer();
       const fileName = "jwt-auth.zip";
