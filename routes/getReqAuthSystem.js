@@ -1,26 +1,18 @@
 const express = require("express");
-const admZip = require("adm-zip");
 
 var AuthSysRoute = express.Router();
 
-AuthSysRoute.get("/getAuthSystem", (req, res, next) => {
-  console.log("__dirname: ", __dirname + "/../authSystems/jwt-auth");
+AuthSysRoute.post("/getAuthSystem", (req, res, next) => {
+  console.log("__dirname: ", __dirname + "/../authSystems");
   try {
     const { systemType } = req.body;
+    console.log(
+      "🚀 ~ file: getReqAuthSystem.js:9 ~ AuthSysRoute.get ~ systemType:",
+      systemType
+    );
 
-    if (systemType === "JWT") {
-      const zip = new admZip();
-      zip.addLocalFolder(__dirname + "/../authSystems/jwt-auth");
-
-      var zipContents = zip.toBuffer();
-      const fileName = "jwt-auth.zip";
-      const fileType = "application/zip";
-      res.writeHead(200, {
-        "Content-Disposition": "attachment; filename=" + fileName,
-        "Content-Type": fileType,
-      });
-
-      return res.end(zipContents);
+    if (systemType !== "JWT") {
+      return res.download(__dirname + "/../authSystems/jwt-auth.zip");
     } else {
       res.status(400).json({
         success: false,

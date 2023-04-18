@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/Namishk/auth-generator-service#readme",
   "dependencies": {
-    "adm-zip": "^0.5.10",
     "archiver": "^5.3.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
